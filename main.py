@@ -6,6 +6,10 @@ from utils.cogs import LoadCogs
 
 client = commands.Bot(command_prefix=(PREFIX))
 
+@client.event
+async def on_ready():
+    logging.info("Bot is ready...")
+
 @client.command()
 async def reload(ctx, extension):
     client.unload_extension(f'cogs.{extension}')
