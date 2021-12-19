@@ -1,4 +1,3 @@
-import os
 import discord
 from config.settings import TOKEN
 
