@@ -1,12 +1,18 @@
-import discord
-from config.settings import TOKEN
+import logging
+from discord.ext import commands
 
-class MyClient(discord.Client):
-    async def on_ready(self):
-        print('Logged on as {0}!'.format(self.user))
+from config.settings import TOKEN, PREFIX
+from utils.cogs import LoadCogs
 
-    async def on_message(self, message):
-        print('Message from {0.author}: {0.content}'.format(message))
+client = commands.Bot(command_prefix=(PREFIX))
 
-client = MyClient()
+@client.command()
+async def reload(ctx, extension):
+    client.unload_extension(f'cogs.{extension}')
+    client.load_extension(f'cogs.{extension}')
+
+
+LoadCogs(client, './cogs')
+logging.info("Bot is initializing...")
+
 client.run(TOKEN)
