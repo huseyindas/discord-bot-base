@@ -1,3 +1,8 @@
 # Environments
 env/
+
+# Log File
 bot.log
+
+# Pyton cache folders
+__pycache__/
